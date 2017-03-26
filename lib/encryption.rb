@@ -6,7 +6,7 @@ class Encryption
   attr_accessor :message
   def initialize(message)
     @new_key = Key.new
-    @char_map = ('a'..'z').to_a + (1..9).to_a + ['.', ',', ' ']
+    @char_map = ('a'..'z').to_a + ("0".."9").to_a + ['.', ',', ' ']
     @message = message
   end
 
@@ -33,8 +33,15 @@ new_array = []
 zipped_message.each_index do |index|
   new_array << message.char_map.index(zipped_message[index][0])
 end
-
-#message.char_map.rotate(new_array[0]+zipped_message[0][1])[0]
+numbers = []
+new_array.each_index do |index|
+  numbers << (new_array[index]+zipped_message[index][1])
+end
+coded_message = ""
+numbers.each do |num|
+  coded_message << message.char_map.rotate(num)[0]
+end
+puts coded_message
 
 binding.pry
 ""

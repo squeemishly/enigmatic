@@ -54,10 +54,7 @@ class Key
 
 end
 
-nk = Key.new
-# nk.split_five_digit_number
-# nk.offset
-# nk.add_offset_to_split
-p nk.merge_methods
+# nk = Key.new
+# nk.merge_methods
 # binding.pry
 # ""
