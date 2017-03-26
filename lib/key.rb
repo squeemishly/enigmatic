@@ -2,11 +2,12 @@ require 'pry'
 require 'Date'
 
 class Key
-  attr_accessor :five_digit_number, :a, :b, :c, :d, :date
+  attr_accessor :five_digit_number, :a, :b, :c, :d, :date, :key_collection
 
   def initialize
     @five_digit_number = 56789 #need to change this back to f_d_n after testing
     @date = date
+    @key_collection = []
     @a = nil
     @b = nil
     @c = nil
@@ -40,7 +41,23 @@ class Key
     @d = d + date[3]
   end
 
+  def create_array
+    @key_collection << a << b << c << d
+  end
+
+  def merge_methods
+    self.split_five_digit_number
+    self.offset
+    self.add_offset_to_split
+    self.create_array
+  end
+
 end
 
+nk = Key.new
+# nk.split_five_digit_number
+# nk.offset
+# nk.add_offset_to_split
+p nk.merge_methods
 # binding.pry
 # ""

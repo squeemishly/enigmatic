@@ -38,4 +38,12 @@ class KeyTest < Minitest::Test
     assert_equal 86, new_key.c
     assert_equal 98, new_key.d
   end
+
+  def test_we_have_an_array_of_ABCD
+    new_key = Key.new
+    new_key.split_five_digit_number
+    new_key.offset
+    new_key.add_offset_to_split
+    assert_equal [56, 71, 86, 98], new_key.create_array
+  end
 end
