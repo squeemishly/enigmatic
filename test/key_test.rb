@@ -39,14 +39,11 @@ class KeyTest < Minitest::Test
       assert_instance_of Fixnum, num
     end
   end
-  
+
 end
 
 
-# require 'minitest/autorun'
-# require 'minitest/pride'
-# require './lib/key'
-# require 'Date'
+
 #
 # class KeyTest < Minitest::Test
 #   def test_it_exists
