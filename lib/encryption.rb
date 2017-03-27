@@ -30,7 +30,7 @@ class Encryption
     end
   end
 
-  def get_shift_total
+  def get_shift_total #try map_with_index on refactor
     char_map_match.each_index do |index|
       shifted_numbers << (char_map_match[index] + message[index][1])
     end
@@ -51,4 +51,7 @@ message.create_splits
 message.zip_message
 message.find_on_char_map
 message.get_shift_total
-puts message.encodify
+binding.pry
+p message.encodify
+p message.new_key.random_five_digit_number
+p message.new_key.offset

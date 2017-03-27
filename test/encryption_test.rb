@@ -57,6 +57,7 @@ class EncryptionTest < Minitest::Test
     message.find_on_char_map
     message.get_shift_total
     assert_instance_of String, message.encodify
+    # assert_equal "awesomeness", message.encodify
   end
 
 
