@@ -10,10 +10,6 @@ class Encryption
     @message = message
   end
 
-  # def create_chars
-  #   @message = message.chars
-  # end
-
   def create_splits
     @message = message.downcase.chars.each_slice(4).to_a
   end
@@ -22,7 +18,6 @@ class Encryption
 end
 
 message = Encryption.new("Hello, World")
-# message.create_chars
 message.new_key.merge_methods
 split_message = message.create_splits
 zipped_message = split_message.map do |arr|
@@ -43,5 +38,5 @@ numbers.each do |num|
 end
 puts coded_message
 
-binding.pry
-""
+# binding.pry
+# ""
