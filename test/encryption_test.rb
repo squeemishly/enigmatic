@@ -41,8 +41,23 @@ class EncryptionTest < Minitest::Test
     assert_instance_of Fixnum, message.char_map_match[0]
   end
 
-  def test_
+  def test_we_get_total_we_shift_each_letter_by
     message = Encryption.new("Hello, World")
+    message.create_splits
+    message.zip_message
+    message.find_on_char_map
+    message.get_shift_total
+    assert_instance_of Fixnum, message.get_shift_total[0]
   end
+
+  def test_we_get_an_awesome_coded_message_like_a_boss
+    message = Encryption.new("Hello, World")
+    message.create_splits
+    message.zip_message
+    message.find_on_char_map
+    message.get_shift_total
+    assert_instance_of String, message.encodify
+  end
+
 
 end
