@@ -1,9 +1,8 @@
 require 'pry'
 require './lib/key'
-require '.lib/encryption'
 
 class Decryption
-  attr_reader :message, :rotation, :offset, :new_key, :char_map, :char_map_match, :encoded_message
+  attr_reader :message, :rotation, :offset, :new_key, :char_map, :char_map_match, :decoded_message
 
   def initialize(message, rotation, offset)
     @message = message
@@ -12,7 +11,7 @@ class Decryption
     @new_key = Key.new
     @char_map = ('a'..'z').to_a + ("0".."9").to_a + ['.', ',', ' ']
     @char_map_match = []
-    @encoded_message
+    @decoded_message
   end
 
   def unrotate
@@ -51,22 +50,22 @@ class Decryption
     end
   end
 
-  def encodify
+  def decodify
     rotated_char_map = []
-    encoded_message = []
+    decoded_message = []
     message.each_index do |index|
       rotated_char_map = char_map.rotate(message[index][1])
-      encoded_message << rotated_char_map[char_map_match[index]]
+      decoded_message << rotated_char_map[char_map_match[index]]
     end
-    encoded_message.join('')
+    @decoded_message = decoded_message.join('')
   end
 
 end
 
-decryptnomicon = Decryption.new("z6o360cb6gov", "96348", 280317)
-p decryptnomicon.create_key
-p decryptnomicon.create_splits
-p decryptnomicon.zip_message
-p decryptnomicon.find_on_char_map
-p decryptnomicon.encodify
-binding.pry
+# decryptnomicon = Decryption.new("z6o360cb6gov", "96348", 280317)
+# p decryptnomicon.create_key
+# p decryptnomicon.create_splits
+# p decryptnomicon.zip_message
+# p decryptnomicon.find_on_char_map
+# p decryptnomicon.decodify
+# binding.pry
