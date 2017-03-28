@@ -2,26 +2,36 @@ require 'pry'
 require 'Date'
 
 class Key
-  attr_reader :key, :random_digit_number, :offset
+  attr_reader :key, :rotation, :offset, :key_generator
 
-  def initialize
-    @key = key
-    @random_digit_number = random_five_digit_number
+  def initialize(key=nil)
+    @key_generator = []
+    key == nil ? @key = random_five_digit_number : @key = key.to_i
     @offset = offset
   end
 
   def random_five_digit_number
     10000 + Random.rand(99999-10000)
   end
-####
+
   def rotation
-    numbers = random_five_digit_number.to_s
-    array_of_numbers = numbers.chars
-    rotation = array_of_numbers.map.with_index do |num, index|
-      [num, array_of_numbers[index+1]].join.to_i
+    if @key == nil
+      numbers = random_five_digit_number.to_s
+      array_of_numbers = numbers.chars
+      rotation = array_of_numbers.map.with_index do |num, index|
+        [num, array_of_numbers[index+1]].join.to_i
+      end
+      rotation.pop
+      rotation
+    else
+      numbers = @key.to_s
+      array_of_numbers = numbers.chars
+      rotation = array_of_numbers.map.with_index do |num, index|
+        [num, array_of_numbers[index+1]].join.to_i
+      end
+      rotation.pop
+      rotation
     end
-    rotation.pop
-    rotation
   end
 
   def offset
@@ -31,7 +41,7 @@ class Key
    date_in_a_string.map { |dates| dates.to_i }
   end
 
-  def key
+  def key_generator
     rotation.map.with_index do |num, index|
       num + offset[index]
     end
@@ -39,7 +49,8 @@ class Key
 
 end
 
-
+# key = Key.new("12345")
+# binding.pry
 # class Key
 #   attr_accessor :five_digit_number, :a, :b, :c, :d, :date, :key_collection
 #

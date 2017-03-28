@@ -7,12 +7,17 @@ require 'pry'
 
 class EncryptorTest < Minitest::Test
 
+  def test_it_adds_a_file
+    read = Encryptor.new
+    
+  end
+
   def test_it_opens_and_reads_contents_of_a_file
     read = Encryptor.new
     read.open_file
     assert_equal "hello", read.read_file
   end
-###
+
   def test_it_reads_and_writes_to_a_file
     read = Encryptor.new
     read.open_file

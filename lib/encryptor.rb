@@ -9,6 +9,7 @@ class Encryptor
   def initialize
     input_file = ARGV[0]
     output_file = ARGV[1]
+    @encryption_key = nil
   end
 
   def open_file
@@ -21,7 +22,8 @@ class Encryptor
   end
 
   def encrypt_file
-    encrypted_message = Encryption.new(read_file, "12345")
+    encrypted_message = Encryption.new(read_file)
+    @encryption_key = encrypted_message.new_key.key
     encrypted_message.create_splits
     encrypted_message.zip_message
     encrypted_message.find_on_char_map
@@ -35,13 +37,14 @@ class Encryptor
   end
 
   def output_message
-    puts "Created #{ARGV[1]} with the key '{new_key.key_generator}' and date #{Date.today.strftime "%d%m%y"}"
+    "Created #{ARGV[1]} with the key #{@encryption_key} and date #{Date.today.strftime "%d%m%y"}"
   end
 
 end
 
-  # new_file = Encryptor.new
-  # new_file.open_file
-  # new_file.encrypt_file
-  # new_file.write_to_new_file
-  # new_file.output_message
+  new_file = Encryptor.new
+  new_file.open_file
+  new_file.read_file
+  new_file.encrypt_file
+  new_file.write_to_new_file
+  puts new_file.output_message

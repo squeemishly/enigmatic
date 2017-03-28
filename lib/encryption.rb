@@ -5,8 +5,10 @@ class Encryption
   attr_reader :new_key, :char_map, :char_map_match, :shifted_numbers
   attr_accessor :message
 
-  def initialize(message)
-    @new_key = Key.new
+  def initialize(message, new_key=nil)
+    #If not given key do thisKey.new
+    #If given key do this Key.new(new_key)
+    new_key == nil ? @new_key = Key.new : @new_key =  Key.new(new_key)
     @char_map = ('a'..'z').to_a + ("0".."9").to_a + ['.', ',', ' ']
     @message = message
     @char_map_match = []
@@ -19,7 +21,7 @@ class Encryption
 
   def zip_message
     @message = message.map do |arr|
-      arr.zip(new_key.key)
+      arr.zip(new_key.key_generator)
     end
     @message.flatten!(1)
   end
@@ -32,10 +34,9 @@ class Encryption
 
   def get_shift_total
     char_map_match.each_index do |index|
-      shifted_numbers << (char_map_match[index] + message[index][1])
+      shifted_numbers << (char_map_match[index]+message[index][1])
     end
   end
-
 
   def encodify
     coded_message = ""
@@ -48,8 +49,13 @@ class Encryption
 end
 
 message = Encryption.new("Hello, World")
-message.create_splits
-message.zip_message
-message.find_on_char_map
-message.get_shift_total
+#binding.pry
+p message.create_splits
+p message.zip_message
+p message.find_on_char_map
+p message.get_shift_total
 puts message.encodify
+p message.new_key.key_generator
+p message.new_key.rotation
+p message.new_key.offset
+# binding.pry
