@@ -14,7 +14,7 @@ class Key
     10000 + Random.rand(99999-10000)
   end
 
-  def rotation
+  def rotation()
     if @key == nil
       numbers = random_five_digit_number.to_s
       array_of_numbers = numbers.chars
@@ -34,8 +34,7 @@ class Key
     end
   end
 
-  def offset
-   date = Date.today.strftime "%d%m%y"
+  def offset(date = (Date.today.strftime "%d%m%y"))
    date_squared = (date.to_i ** 2).to_s
    date_in_a_string = date_squared[-4..-1].split('')
    date_in_a_string.map { |dates| dates.to_i }

@@ -27,7 +27,6 @@ class Encryptor
     encrypted_message.create_splits
     encrypted_message.zip_message
     encrypted_message.find_on_char_map
-    encrypted_message.get_shift_total
     encrypted_message.encodify
   end
 
@@ -41,10 +40,10 @@ class Encryptor
   end
 
 end
-
-  new_file = Encryptor.new
-  new_file.open_file
-  new_file.read_file
-  new_file.encrypt_file
-  new_file.write_to_new_file
-  puts new_file.output_message
+  #
+  # new_file = Encryptor.new
+  # new_file.open_file
+  # new_file.read_file
+  # new_file.encrypt_file
+  # new_file.write_to_new_file
+  # puts new_file.output_message

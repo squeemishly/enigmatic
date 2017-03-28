@@ -2,7 +2,7 @@ require './lib/key' #take out after testing
 require 'pry'
 
 class Encryption
-  attr_reader :new_key, :char_map, :char_map_match, :shifted_numbers
+  attr_reader :new_key, :char_map, :char_map_match, :encoded_message
   attr_accessor :message
 
   def initialize(message, new_key=nil)
@@ -12,7 +12,7 @@ class Encryption
     @char_map = ('a'..'z').to_a + ("0".."9").to_a + ['.', ',', ' ']
     @message = message
     @char_map_match = []
-    @shifted_numbers = []
+    @encoded_message = nil
   end
 
   def create_splits
@@ -30,32 +30,31 @@ class Encryption
     message.each_index do |index|
       char_map_match << char_map.index(message[index][0])
     end
-  end
-
-  def get_shift_total
-    char_map_match.each_index do |index|
-      shifted_numbers << (char_map_match[index]+message[index][1])
-    end
+    char_map_match
   end
 
   def encodify
-    coded_message = ""
-    shifted_numbers.each do |num|
-      coded_message << char_map.rotate(num)[0]
+    rotated_char_map = []
+    encoded_message = []
+    message.each_index do |index|
+      rotated_char_map = char_map.rotate(message[index][1])
+      encoded_message << rotated_char_map[char_map_match[index]]
     end
-    @message = coded_message
+    encoded_message.join('')
   end
 
 end
 
-message = Encryption.new("Hello, World")
-#binding.pry
-p message.create_splits
-p message.zip_message
-p message.find_on_char_map
-p message.get_shift_total
-puts message.encodify
-p message.new_key.key_generator
-p message.new_key.rotation
-p message.new_key.offset
+# message = Encryption.new("Hello, World")
+# #binding.pry
+# p message.create_splits
+# p message.zip_message
+# p message.find_on_char_map
+# p message.encodify
+# # p message.get_shift_total
+# # puts message.encodify
+# p message.new_key.key_generator
+# p message.new_key.rotation
+# p message.new_key.offset
+# p message.new_key.key
 # binding.pry
