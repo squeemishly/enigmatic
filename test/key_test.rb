@@ -14,7 +14,7 @@ class KeyTest < Minitest::Test
     new_key = Key.new
     assert_instance_of Fixnum, new_key.random_five_digit_number
   end
-
+  ###
   def test_it_splits_the_numbers_to_values
     new_key = Key.new
     expected = new_key.rotation

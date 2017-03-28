@@ -36,6 +36,7 @@ class Encryption
     end
   end
 
+
   def encodify
     coded_message = ""
     shifted_numbers.each do |num|
