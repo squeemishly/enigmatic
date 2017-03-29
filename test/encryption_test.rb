@@ -46,7 +46,7 @@ class EncryptionTest < Minitest::Test
     message.create_splits
     message.zip_message
     message.find_on_char_map
-    assert_instance_of String, message.encodify
+    assert_instance_of String, message.codify
   end
 
 
