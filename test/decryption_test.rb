@@ -65,9 +65,8 @@ class DecryptionTest < Minitest::Test
     decryptnomicon.create_splits
     decryptnomicon.zip_message
     decryptnomicon.find_on_char_map
-    decryptnomicon.decodify
-    assert_instance_of String, decryptnomicon.decoded_message
-    assert_equal decryptnomicon.message.length, decryptnomicon.decoded_message.length
+    assert_instance_of String, decryptnomicon.codify
+    assert_equal decryptnomicon.message.length, decryptnomicon.codify.length
   end
 
 end

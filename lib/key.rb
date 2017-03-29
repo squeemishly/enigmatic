@@ -17,21 +17,16 @@ class Key
   def rotation()
     if @key == nil
       numbers = random_five_digit_number.to_s
-      array_of_numbers = numbers.chars
-      rotation = array_of_numbers.map.with_index do |num, index|
-        [num, array_of_numbers[index+1]].join.to_i
-      end
-      rotation.pop
-      rotation
     else
       numbers = @key.to_s
-      array_of_numbers = numbers.chars
-      rotation = array_of_numbers.map.with_index do |num, index|
-        [num, array_of_numbers[index+1]].join.to_i
-      end
-      rotation.pop
-      rotation
     end
+
+    list_of_numbers = numbers.chars
+    rotation = list_of_numbers.map.with_index do |num, index|
+      [num, list_of_numbers[index+1]].join.to_i
+    end
+    rotation.pop
+    rotation
   end
 
   def offset(date = (Date.today.strftime "%d%m%y"))
