@@ -1,36 +1,49 @@
-require 'Minitest/autorun'
-require 'Minitest/pride'
+require 'pry'
 require './lib/encryption.rb'
 require './lib/key'
-require './lib/encryptor'
-require 'pry'
 
-class EncryptorTest < Minitest::Test
+class Encryptor
 
-  def test_it_exists
-    read = Encryptor.new
-    assert_instance_of Encryptor, read
+  attr_reader :input_file, :output_file
+
+  def initialize
+    input_file = ARGV[0]
+    output_file = ARGV[1]
+    @encryption_key = nil
   end
 
-  def test_it_opens_and_reads_contents_of_a_file
-    read = Encryptor.new
-    read.open_file
-    assert_equal "hello", read.read_file
+  def open_file
+    file = File.open(ARGV[0], "r")
   end
 
-  def test_it_reads_and_writes_to_a_file
-    read = Encryptor.new
-    read.open_file
-    read.read_file
-    read.encrypt_file
-    assert_equal 5, read.write_to_new_file
+  def read_file
+    message = open_file.readlines
+    message.join("").chomp
   end
 
-  # def test_it_outputs_a_message
-  #   read = Encryptor.new
-  #   read.open_file
-  #   read.read_file
-  #   read.encrypt_file
-  #   read.write_to_new_file
-  #   assert_equal "Created encrypted.txt with the key 12345 and date 280317", read.output_message
-  # end
+  def encrypt_file
+    encrypted_message = Encryption.new(read_file)
+    @encryption_key = encrypted_message.new_key.key
+    encrypted_message.create_splits
+    encrypted_message.zip_message
+    encrypted_message.find_on_char_map
+    encrypted_message.encodify
+  end
+
+  def write_to_new_file
+    encrypted_file = File.open(ARGV[1], "w+")
+    encrypted_file.write(encrypt_file)
+  end
+
+  def output_message
+    "Created #{ARGV[1]} with the key #{@encryption_key} and date #{Date.today.strftime "%d%m%y"}"
+  end
+
+end
+
+  new_file = Encryptor.new
+  new_file.open_file
+  new_file.read_file
+  new_file.encrypt_file
+  new_file.write_to_new_file
+  puts new_file.output_message
