@@ -4,11 +4,11 @@ require './lib/decryption'
 class Decryptor
   attr_reader :input_file, :output_file
 
-  def initialize(rotation, offset)
-    input_file = ARGV[0]
+  def initialize(rotation=ARGV[2], offset=ARGV[3])
+    input_file  = ARGV[0]
     output_file = ARGV[1]
-    @rotation = rotation
-    @offset = offset
+    @rotation   = rotation
+    @offset     = offset
   end
 
   def open_file
@@ -25,7 +25,7 @@ class Decryptor
     decrypted_message.create_splits
     decrypted_message.zip_message
     decrypted_message.find_on_char_map
-    decrypted_message.decodify
+    decrypted_message.codify
   end
 
   def write_to_new_file
@@ -39,7 +39,7 @@ class Decryptor
 
   end
 
-  new_file = Decryptor.new("71188", 290317)
+  new_file = Decryptor.new
   new_file.open_file
   new_file.read_file
   new_file.decrypt_file
