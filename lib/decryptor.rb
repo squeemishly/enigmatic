@@ -1,6 +1,8 @@
 require './lib/decryption'
+require './lib/fileio_module'
 
 class Decryptor
+  include FileIOModule
   attr_reader :input_file,
               :output_file
 
@@ -11,26 +13,12 @@ class Decryptor
     @offset     = offset
   end
 
-  def open_file
-    file = File.open(ARGV[0], "r")
-  end
-
-  def read_file
-    message = open_file.readlines
-    message.join("").chomp
-  end
-
-  def decrypt_file
+  def crypted_file
     decrypted_message = Decryption.new(read_file, @rotation, @offset)
     decrypted_message.create_splits
     decrypted_message.zip_message
     decrypted_message.find_on_char_map
     decrypted_message.codify
-  end
-
-  def write_to_new_file
-    decrypted_file = File.open(ARGV[1], "w+")
-    decrypted_file.write(decrypt_file)
   end
 
   def output_message

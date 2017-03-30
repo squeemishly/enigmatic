@@ -20,7 +20,7 @@ class DecryptorTest < Minitest::Test
     decryptify = Decryptor.new("71188", 290317)
     decryptify.open_file
     decryptify.read_file
-    decryptify.decrypt_file
+    decryptify.crypted_file
     assert_equal 5, decryptify.write_to_new_file
   end
 

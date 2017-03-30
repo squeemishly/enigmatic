@@ -1,8 +1,9 @@
 require './lib/encryption.rb'
 require './lib/key'
+require './lib/fileio_module'
 
 class Encryptor
-
+  include FileIOModule
   attr_reader :input_file,
               :output_file
 
@@ -12,27 +13,13 @@ class Encryptor
     @encryption_key = nil
   end
 
-  def open_file
-    file = File.open(ARGV[0], "r")
-  end
-
-  def read_file
-    message = open_file.readlines
-    message.join("").chomp
-  end
-
-  def encrypt_file
+  def crypted_file
     encrypted_message = Encryption.new(read_file)
     @encryption_key = encrypted_message.new_key.key
     encrypted_message.create_splits
     encrypted_message.zip_message
     encrypted_message.find_on_char_map
     encrypted_message.codify
-  end
-
-  def write_to_new_file
-    encrypted_file = File.open(ARGV[1], "w+")
-    encrypted_file.write(encrypt_file)
   end
 
   def output_message

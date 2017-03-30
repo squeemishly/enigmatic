@@ -16,7 +16,7 @@ class EncryptorTest < Minitest::Test
   def test_it_reads_and_writes_to_a_file
     read = Encryptor.new
     read.open_file
-    read.encrypt_file
+    read.crypted_file
     assert_equal 5, read.write_to_new_file
   end
 
