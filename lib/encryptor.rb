@@ -27,7 +27,7 @@ class Encryptor
     encrypted_message.create_splits
     encrypted_message.zip_message
     encrypted_message.find_on_char_map
-    encrypted_message.encodify
+    encrypted_message.codify
   end
 
   def write_to_new_file

@@ -4,14 +4,14 @@ module EncryptionMethods
     @message = message.downcase.chars.each_slice(4).to_a
   end
 
-  def find_on_char_map ###
+  def find_on_char_map
     message.each_index do |index|
       char_map_match << char_map.index(message[index][0])
     end
     char_map_match
   end
 
-  def codify ###
+  def codify
     rotated_char_map = []
     encoded_message = []
     message.each_index do |index|
@@ -22,8 +22,8 @@ module EncryptionMethods
   end
 
   def zip_message
-    @message = message.map do |arr|
-      arr.zip(create_key)
+    @message = message.map do |letter|
+      letter.zip(create_key)
     end
     @message.flatten!(1)
   end

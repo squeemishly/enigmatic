@@ -5,7 +5,12 @@ require './lib/encryption_methods'
 class Decryption
 
   include EncryptionMethods
-  attr_reader :message, :rotation, :offset, :new_key, :char_map, :char_map_match
+  attr_reader :message,
+              :rotation,
+              :offset,
+              :new_key,
+              :char_map,
+              :char_map_match
 
   def initialize(message, rotation, offset)
     @message = message
@@ -33,6 +38,14 @@ class Decryption
     unrotate.map.with_index do |num, index|
       (num + undatify[index]) * -1
     end
+  end
+
+  def merge_methods
+    create_key
+    create_splits
+    zip_message
+    find_on_char_map
+    codify
   end
 
 end
