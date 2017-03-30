@@ -22,3 +22,8 @@ class Cracker
   end
 
 end
+
+e = Cracker.new
+e.open_file
+e.read_file
+e.write_to_new_file

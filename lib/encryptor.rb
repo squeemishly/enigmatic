@@ -27,3 +27,9 @@ class Encryptor
   end
 
 end
+
+e = Encryptor.new
+e.open_file
+e.read_file
+e.write_to_new_file
+puts e.output_message

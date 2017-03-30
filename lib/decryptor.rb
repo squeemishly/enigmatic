@@ -26,3 +26,9 @@ class Decryptor
   end
 
 end
+
+e = Decryptor.new
+e.open_file
+e.read_file
+e.write_to_new_file
+puts e.output_message
