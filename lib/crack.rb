@@ -1,4 +1,3 @@
-require 'pry'
 require './lib/decryption'
 
 class Crack
@@ -24,6 +23,3 @@ class Crack
   end
 
 end
-
-# cracked = Crack.new("90tip1322ekiuv279sx78,l9usi0u6o0n", 290317)
-# puts cracked.crack_code

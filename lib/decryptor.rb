@@ -1,4 +1,3 @@
-require 'pry'
 require './lib/decryption'
 
 class Decryptor
@@ -39,10 +38,3 @@ class Decryptor
   end
 
   end
-
-  # new_file = Decryptor.new
-  # new_file.open_file
-  # new_file.read_file
-  # new_file.decrypt_file
-  # new_file.write_to_new_file
-  # puts new_file.output_message

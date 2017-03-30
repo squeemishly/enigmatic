@@ -1,4 +1,3 @@
-require 'pry'
 require 'Date'
 
 class Key
@@ -14,13 +13,8 @@ class Key
     10000 + Random.rand(99999-10000)
   end
 
-  def rotation()
-    if @key == nil
-      numbers = random_five_digit_number.to_s
-    else
-      numbers = @key.to_s
-    end
-
+  def rotation
+    numbers = @key.to_s
     list_of_numbers = numbers.chars
     rotation = list_of_numbers.map.with_index do |num, index|
       [num, list_of_numbers[index+1]].join.to_i

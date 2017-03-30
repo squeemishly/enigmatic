@@ -1,10 +1,10 @@
-require 'pry'
 require './lib/encryption.rb'
 require './lib/key'
 
 class Encryptor
 
-  attr_reader :input_file, :output_file
+  attr_reader :input_file,
+              :output_file
 
   def initialize
     input_file = ARGV[0]
@@ -40,10 +40,3 @@ class Encryptor
   end
 
 end
-
-  # new_file = Encryptor.new
-  # new_file.open_file
-  # new_file.read_file
-  # new_file.encrypt_file
-  # new_file.write_to_new_file
-  # puts new_file.output_message

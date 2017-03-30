@@ -1,4 +1,3 @@
-require 'pry'
 require './lib/key'
 require './lib/encryption_methods'
 
@@ -19,14 +18,3 @@ class Encryption
   end
 
 end
-
-# message = Encryption.new("Hello, World")
-# p message.create_splits
-# p message.zip_message
-# message.find_on_char_map
-# p x = message.codify
-# p x
-# p message.new_key.key_generator
-# p message.new_key.rotation
-# p message.new_key.offset
-# p message.new_key.key

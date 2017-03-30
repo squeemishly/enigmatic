@@ -1,4 +1,3 @@
-require 'pry'
 require './lib/key'
 require './lib/encryption_methods'
 
@@ -49,11 +48,3 @@ class Decryption
   end
 
 end
-
-# decryptnomicon = Decryption.new("z6o360cb6gov", "96348", 280317)
-# p decryptnomicon.create_key
-# p decryptnomicon.create_splits
-# p decryptnomicon.zip_message
-# p decryptnomicon.find_on_char_map
-# p decryptnomicon.codify
-# binding.pry

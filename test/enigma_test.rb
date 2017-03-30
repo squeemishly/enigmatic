@@ -13,10 +13,10 @@ class EnigmaTest < Minitest::Test
     assert_instance_of String, e.encrypt("hello my dearest of friends")
   end
 
-  # def test_it_encrypts_with_a_specific_code
-  #   e = Enigma.new
-  #   assert_equal "", e.encrypt("hello my dearest of friends", "12345", Date.today)
-  # end
+  def test_it_encrypts_with_a_specific_code
+    e = Enigma.new
+    assert_equal "t5o000pal4hp35v8lciorfltz4v", e.encrypt("hello my dearest of friends", "12345", Date.today)
+  end
 
   def test_it_decrypts
     e = Enigma.new
@@ -30,6 +30,11 @@ class EnigmaTest < Minitest::Test
 
   def test_it_got_a_crack
     e = Enigma.new
-    assert_equal "hello, world", e.crack("z6o360cb6gov", 290317)
+    assert_equal "hello, world ..end..", e.crack("wjty3dh93wtqocfr2ifk")
+  end
+
+  def test_it_cracks_with_a_date
+    e = Enigma.new
+    assert_equal "hello, world ..end..", e.crack("wjty3dh93wtqocfr2ifk", Date.today)
   end
 end
