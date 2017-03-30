@@ -25,4 +25,4 @@ class Decryptor
     "Created #{ARGV[1]} with the key #{@rotation} and date #{@offset}"
   end
 
-  end
+end
