@@ -15,11 +15,12 @@ class CrackerTest < Minitest::Test
 
   def test_it_can_crack_a_message
     cracker = Cracker.new
-    assert_equal "this is my secret message ..end..", cracker.crack_that_message
+    assert_equal "this is my secret message ..end..", cracker.crypted_file
   end
 
   def test_it_writes_to_a_file
     cracker = Cracker.new
+    cracker.crypted_file
     assert_equal 33, cracker.write_to_new_file
   end
 end
