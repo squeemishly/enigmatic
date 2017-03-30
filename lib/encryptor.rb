@@ -41,9 +41,9 @@ class Encryptor
 
 end
 
-  new_file = Encryptor.new
-  new_file.open_file
-  new_file.read_file
-  new_file.encrypt_file
-  new_file.write_to_new_file
-  puts new_file.output_message
+  # new_file = Encryptor.new
+  # new_file.open_file
+  # new_file.read_file
+  # new_file.encrypt_file
+  # new_file.write_to_new_file
+  # puts new_file.output_message

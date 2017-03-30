@@ -2,7 +2,8 @@ require 'pry'
 require './lib/decryption'
 
 class Decryptor
-  attr_reader :input_file, :output_file
+  attr_reader :input_file,
+              :output_file
 
   def initialize(rotation=ARGV[2], offset=ARGV[3])
     input_file  = ARGV[0]
@@ -39,9 +40,9 @@ class Decryptor
 
   end
 
-  new_file = Decryptor.new
-  new_file.open_file
-  new_file.read_file
-  new_file.decrypt_file
-  new_file.write_to_new_file
-  puts new_file.output_message
+  # new_file = Decryptor.new
+  # new_file.open_file
+  # new_file.read_file
+  # new_file.decrypt_file
+  # new_file.write_to_new_file
+  # puts new_file.output_message

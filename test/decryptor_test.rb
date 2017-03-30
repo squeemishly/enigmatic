@@ -16,11 +16,6 @@ class DecryptorTest < Minitest::Test
     assert_equal "at,4h", decryptify.read_file
   end
 
-  def test_it_holds_the_key_and_date
-    decryptify = Decryptor.new("71188", 290317)
-
-  end
-
   def test_it_reads_and_writes_to_a_file
     decryptify = Decryptor.new("71188", 290317)
     decryptify.open_file
