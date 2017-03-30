@@ -20,6 +20,7 @@ class CrackerTest < Minitest::Test
 
   def test_it_writes_to_a_file
     cracker = Cracker.new
-    assert_equal 33, cracker.crypted_file
+    cracker.crypted_file
+    assert_equal 33, cracker.write_to_new_file
   end
 end
